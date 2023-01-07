@@ -1,0 +1,14 @@
+/.vscode/
+.idea
+
+.DS_Store
+
+.cache
+
+# goreleaser builds folder
+/.builds/
+
+# tests coverage
+coverage.out
+
+third_party

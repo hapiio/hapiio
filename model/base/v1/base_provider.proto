@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package singhhp1069.go_sass;
+
+option go_package = "./;pb";
+
+message Provider {
+    repeated string scopes =1;
+    string client_id =2;
+    string client_secret = 3;
+    string redirect_url = 4;
+    string auth_url = 5;
+    string token_url = 6;
+    string user_api_url = 7;
+}

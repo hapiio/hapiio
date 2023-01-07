@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package singhhp1069.go_sass;
+
+option go_package = "./;pb";
+// import "google/protobuf/empty.proto";
+
+message AuthUser {
+  string id = 1;
+  string name = 2;
+  string user_name = 3;
+  string email = 4;
+  string avatar_url = 5;
+  map<string, string> raw_user = 6;
+  string access_token = 7;
+}
