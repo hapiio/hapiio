@@ -11,7 +11,5 @@ Hapiio implements following features:
 - [ ] Realtime Event Subscription
 
 ## SDKs 
-
 * Javascript SDK
 * Dart SDK
-
