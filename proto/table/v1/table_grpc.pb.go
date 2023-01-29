@@ -35,7 +35,7 @@ func NewTableServiceClient(cc grpc.ClientConnInterface) TableServiceClient {
 
 func (c *tableServiceClient) CreateTable(ctx context.Context, in *CreateTableRequest, opts ...grpc.CallOption) (*CreateTableResponse, error) {
 	out := new(CreateTableResponse)
-	err := c.cc.Invoke(ctx, "/singhhp1069.go_sass.TableService/CreateTable", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/singhhp1069.happio.TableService/CreateTable", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func _TableService_CreateTable_Handler(srv interface{}, ctx context.Context, dec
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/singhhp1069.go_sass.TableService/CreateTable",
+		FullMethod: "/singhhp1069.happio.TableService/CreateTable",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TableServiceServer).CreateTable(ctx, req.(*CreateTableRequest))
@@ -90,7 +90,7 @@ func _TableService_CreateTable_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TableService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "singhhp1069.go_sass.TableService",
+	ServiceName: "singhhp1069.happio.TableService",
 	HandlerType: (*TableServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -12,4 +12,6 @@
 # tests coverage
 coverage.out
 
-third_party
+third_party/OpenAPI/*
+
+hapiio

@@ -1,34 +1,23 @@
 package server
 
 import (
-	"context"
 	"sync"
 
-	table "github.com/hapiio/hapiio/proto/table/v1"
+	"github.com/hapiio/hapiio/core"
+	"github.com/hapiio/hapiio/db"
+	"gorm.io/gorm"
 )
 
 type Server struct {
-	m *sync.RWMutex
-	// tables []*table.Table
+	m  *sync.RWMutex
+	db *gorm.DB
+	// tables []*table_pb.Table
 }
 
 func New() *Server {
+	conf := core.Configure()
 	return &Server{
-		m: &sync.RWMutex{},
+		m:  &sync.RWMutex{},
+		db: db.Connect(conf),
 	}
-}
-
-// CreateTable implements v1.TableServiceServer
-func (s *Server) CreateTable(context.Context, *table.CreateTableRequest) (*table.CreateTableResponse, error) {
-	s.m.Lock()
-	defer s.m.Unlock()
-
-	t := &table.Table{
-		TableName: "Test",
-		Column:    make([]*table.Column, 0),
-	}
-
-	return &table.CreateTableResponse{
-		Table: t,
-	}, nil
 }

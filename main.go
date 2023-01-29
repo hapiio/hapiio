@@ -1,56 +1,41 @@
 package main
 
-import "github.com/hapiio/hapiio/cmd"
+import (
+	"io/ioutil"
+	"net"
+	"os"
 
-// type server struct {
-// 	table.UnimplementedTableServiceServer
-// }
-
-// func NewServer() *server {
-// 	return &server{}
-// }
-
-// func (s *server) SayHello(ctx context.Context, in *table.CreateTableRequest) (*table.CreateTableResponse, error) {
-// 	return &table.CreateTableResponse{
-// 		Table: &table.Table{
-// 			TableName: "test",
-// 			Column:    make([]*table.Column, 0),
-// 		},
-// 	}, nil
-// }
+	"github.com/hapiio/hapiio/cmd"
+	"github.com/hapiio/hapiio/gateway"
+	table_pb "github.com/hapiio/hapiio/proto/table/v1"
+	"github.com/hapiio/hapiio/server"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/grpclog"
+)
 
 func main() {
-	// provider, err := auth.Provider("facebook")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// }
-	// fmt.Println(provider.AuthUrl())
+	// Adds gRPC internal logs. This is quite verbose, so adjust as desired!
+	log := grpclog.NewLoggerV2(os.Stdout, ioutil.Discard, ioutil.Discard)
+	grpclog.SetLoggerV2(log)
 
-	// var cfg core.Config
-	// conf := core.Configure()
-	// fmt.Println(conf.Greeting)
-	// db.Connect(conf)
-	// log := grpclog.NewLoggerV2(os.Stdout, ioutil.Discard, ioutil.Discard)
-	// grpclog.SetLoggerV2(log)
+	addr := "0.0.0.0:10000"
+	lis, err := net.Listen("tcp", addr)
+	if err != nil {
+		log.Fatalln("Failed to listen:", err)
+	}
 
-	// addr := "0.0.0.0:8000"
-	// // Create a listener on TCP port
-	// lis, err := net.Listen("tcp", addr)
-	// if err != nil {
-	// 	log.Fatalln("Failed to listen:", err)
-	// }
+	s := grpc.NewServer(
+	// TODO: Replace with your own certificate!
+	// grpc.Creds(credentials.NewServerTLSFromCert(&insecure.Cert)),
+	)
+	table_pb.RegisterTableServiceServer(s, server.New())
+	// Serve gRPC Server
+	log.Info("Serving gRPC on http://", addr)
+	go func() {
+		log.Fatal(s.Serve(lis))
+	}()
 
-	// // Create a gRPC server object
-	// s := grpc.NewServer()
-	// // Attach the Greeter service to the server
-	// table.RegisterTableServiceServer(s, server.New())
-	// // Serve gRPC Server
-	// log.Info("Serving gRPC on %s", addr)
-	// // go func() {
-	// log.Fatal(s.Serve(lis))
-	// }()
-	// err = gateway.Run("dns:///" + addr)
-	// log.Fatalln(err)
-
+	err = gateway.Run("dns:///" + addr)
+	log.Fatalln(err)
 	cmd.Execute()
 }

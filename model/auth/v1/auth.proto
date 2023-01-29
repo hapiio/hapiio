@@ -1,9 +1,8 @@
 syntax = "proto3";
 
-package singhhp1069.go_sass;
+package singhhp1069.happio;
 
 option go_package = "./;pb";
-// import "google/protobuf/empty.proto";
 
 message AuthUser {
   string id = 1;

@@ -77,7 +77,7 @@ func RegisterTableServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/singhhp1069.go_sass.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/users"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/singhhp1069.happio.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/table"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -139,7 +139,7 @@ func RegisterTableServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/singhhp1069.go_sass.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/users"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/singhhp1069.happio.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/table"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -159,7 +159,7 @@ func RegisterTableServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_TableService_CreateTable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "users"}, ""))
+	pattern_TableService_CreateTable_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "table"}, ""))
 )
 
 var (

@@ -4,7 +4,7 @@ Date: 2023-01-29
 
 ## Status
 
-Superceded by [12. architecture](0012-architecture.md)
+DRAFT
 
 ## Context
 
