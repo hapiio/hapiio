@@ -4,6 +4,7 @@
 .DS_Store
 
 .cache
+.adr-dir
 
 # goreleaser builds folder
 /.builds/
