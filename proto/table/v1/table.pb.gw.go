@@ -77,7 +77,7 @@ func RegisterTableServiceHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/singhhp1069.happio.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/table"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/hapiio.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/table"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -139,7 +139,7 @@ func RegisterTableServiceHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/singhhp1069.happio.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/table"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/hapiio.TableService/CreateTable", runtime.WithHTTPPathPattern("/v1/table"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

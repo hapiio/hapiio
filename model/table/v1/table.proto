@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package singhhp1069.happio;
+package hapiio;
 
 
 import "google/api/annotations.proto";

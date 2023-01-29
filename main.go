@@ -13,6 +13,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/grpclog"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -31,6 +32,8 @@ func main() {
 		grpc.Creds(credentials.NewServerTLSFromCert(&insecure.Cert)),
 	)
 	table_pb.RegisterTableServiceServer(s, server.New())
+	// register reflation for grpcurl
+	reflection.Register(s)
 	// Serve gRPC Server
 	log.Info("Serving gRPC on http://", addr)
 	go func() {
