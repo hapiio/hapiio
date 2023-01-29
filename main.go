@@ -7,9 +7,11 @@ import (
 
 	"github.com/hapiio/hapiio/cmd"
 	"github.com/hapiio/hapiio/gateway"
+	"github.com/hapiio/hapiio/insecure"
 	table_pb "github.com/hapiio/hapiio/proto/table/v1"
 	"github.com/hapiio/hapiio/server"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/grpclog"
 )
 
@@ -25,8 +27,8 @@ func main() {
 	}
 
 	s := grpc.NewServer(
-	// TODO: Replace with your own certificate!
-	// grpc.Creds(credentials.NewServerTLSFromCert(&insecure.Cert)),
+		// TODO: Replace with your own certificate!
+		grpc.Creds(credentials.NewServerTLSFromCert(&insecure.Cert)),
 	)
 	table_pb.RegisterTableServiceServer(s, server.New())
 	// Serve gRPC Server
