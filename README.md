@@ -2,7 +2,7 @@
 
 Hapiio is an open source backend service management platform for a Web and Mobile Developers.
 
-Hapiio implements following features:
+Hapiio implements following features (TODO):
 
 - [ ] REST APIs
 - [ ] gRPC Server
@@ -10,7 +10,7 @@ Hapiio implements following features:
 - [ ] Files Management
 - [ ] Realtime Event Subscription
 
-## SDKs 
+## SDKs (TODO)
 * Javascript SDK
 * Dart SDK
 
